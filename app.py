@@ -45,9 +45,9 @@ def insertar_prediccion(l_p, l_s, a_s, a_p, prediccion):
     try:
         conn = psycopg2.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, dbname=DBNAME)
         cur  = conn.cursor()
-        cur.execute("SET search_path TO public")
+        cur.execute("SET search_path TO ml")
         cur.execute(
-            "INSERT INTO public.tb_iris (l_p, l_s, a_s, a_p, prediccion) VALUES (%s, %s, %s, %s, %s)",
+            "INSERT INTO ml.tb_iris (l_p, l_s, a_s, a_p, prediccion) VALUES (%s, %s, %s, %s, %s)",
             (l_p, l_s, a_s, a_p, prediccion)
         )
         conn.commit()
@@ -62,8 +62,8 @@ def obtener_historico():
     try:
         conn = psycopg2.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, dbname=DBNAME)
         cur  = conn.cursor(cursor_factory=RealDictCursor)
-        cur.execute("SET search_path TO public")
-        cur.execute("SELECT id, created_at, l_p, l_s, a_s, a_p, prediccion FROM public.tb_iris ORDER BY created_at DESC")
+        cur.execute("SET search_path TO ml")
+        cur.execute("SELECT id, created_at, l_p, l_s, a_s, a_p, prediccion FROM ml.tb_iris ORDER BY created_at DESC")
         rows = cur.fetchall()
         cur.close()
         conn.close()

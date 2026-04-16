@@ -41,15 +41,11 @@ try:
 
 except Exception as e:
     st.write(str(e))
-
-# ── NUEVO: insertar predicción ────────────────────────────────────────────────
 def insertar_prediccion(l_p, l_s, a_s, a_p, prediccion):
     try:
-        conn = psycopg2.connect(
-            user=USER, password=PASSWORD, host=HOST, port=PORT, dbname=DBNAME,
-            options="-c search_path=public"
-        )
+        conn = psycopg2.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, dbname=DBNAME)
         cur  = conn.cursor()
+        cur.execute("SET search_path TO public")
         cur.execute(
             "INSERT INTO public.tb_iris (l_p, l_s, a_s, a_p, prediccion) VALUES (%s, %s, %s, %s, %s)",
             (l_p, l_s, a_s, a_p, prediccion)
@@ -61,15 +57,12 @@ def insertar_prediccion(l_p, l_s, a_s, a_p, prediccion):
     except Exception as e:
         st.error(f"Error al guardar: {e}")
         return False
- 
-# ── NUEVO: obtener histórico ──────────────────────────────────────────────────
+
 def obtener_historico():
     try:
-        conn = psycopg2.connect(
-            user=USER, password=PASSWORD, host=HOST, port=PORT, dbname=DBNAME,
-            options="-c search_path=public"
-        )
+        conn = psycopg2.connect(user=USER, password=PASSWORD, host=HOST, port=PORT, dbname=DBNAME)
         cur  = conn.cursor(cursor_factory=RealDictCursor)
+        cur.execute("SET search_path TO public")
         cur.execute("SELECT id, created_at, l_p, l_s, a_s, a_p, prediccion FROM public.tb_iris ORDER BY created_at DESC")
         rows = cur.fetchall()
         cur.close()

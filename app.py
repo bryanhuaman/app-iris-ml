@@ -7,10 +7,10 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 
 # Fetch variables
-USER = "postgres.elkmnbfzomkaugwjzeyv" #os.getenv("user")
+USER = "postgres" #os.getenv("user")
 PASSWORD = "clase0515042026"# os.getenv("password")
-HOST = "aws-1-us-east-1.pooler.supabase.com" #os.getenv("host")
-PORT = "6543" #os.getenv("port")
+HOST = "db.elkmnbfzomkaugwjzeyv.supabase.co" #os.getenv("host")
+PORT = "5432" #os.getenv("port")
 DBNAME = "postgres" #os.getenv("dbname")
 
 # Configuración de la página

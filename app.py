@@ -77,9 +77,9 @@ def obtener_historico():
 def renderizar_tabla_historico(rows):
     total = len(rows)
     estilos_badge = {
-        "setosa":     "background:#E1F5EE;color:#085041;",
-        "versicolor": "background:#E6F1FB;color:#0C447C;",
-        "virginica":  "background:#EEEDFE;color:#3C3489;",
+    "setosa":     "background:#0F6E56;color:#E1F5EE;",
+    "versicolor": "background:#185FA5;color:#E6F1FB;",
+    "virginica":  "background:#534AB7;color:#EEEDFE;",
     }
     filas_html = ""
     for row in rows:
